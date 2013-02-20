@@ -1,16 +1,11 @@
 require_relative 'lib/40k'
 # require 'gosu'
 
-# game = Game.new
+game = Game.new
+choas = game.choas_army
+marine = game.marine_army
 
-me = Marine.new
-puts me.class
-choas = ThousandSon.new
-puts choas.autosave
-# choas = game.choas_army
-# marine = game.marine_army
-
-# game.turn(choas, marine)
+game.turn(choas, marine)
 
 # class GameWindow < Gosu::Window
 #   def initialize
