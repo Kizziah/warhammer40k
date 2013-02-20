@@ -1,26 +1,19 @@
 require_relative 'lib/40k'
 # require 'gosu'
 
-game = Game.new
-choas = game.choas_army
-marine = game.marine_army
+# game = Game.new
+# choas = game.choas_army
+# marine = game.marine_army
 
-game.turn(choas, marine)
+havoc = Squad.new("Havoc", 'choas', 1, Havoc.new, 4, )
+cultist = Squad.new("cultist", 'choas', 2, Cultist.new, 7 )
 
-# class GameWindow < Gosu::Window
-#   def initialize
-#     super 640, 480, false
-#     self.caption = "WarHammer 40k"
-#     @background_image = Gosu::Image.new(self, "lib/assets/grass.png", true)
-#   end
+havoc.add_leader(MarineSergeant.new)
 
-#   def update
-#   end
+# puts cultist
 
-#   def draw
-#     @background_image.draw(0, 0, 0)
-#   end
-# end
+# puts havoc.troops.ld
 
-# window = GameWindow.new
-# window.show
+havoc.break_test
+
+puts havoc.broken?

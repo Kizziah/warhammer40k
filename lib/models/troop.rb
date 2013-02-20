@@ -20,7 +20,7 @@ class Troop
   end
 
   def shoot(target, shoot_rolls = {})
-    ShootTarget.new(self, target, shoot_rolls)
+    Shoot.new(self, target, shoot_rolls)
   end
 
   def assault(target, attack_rolls = {}, defend_rolls = {})

@@ -1,12 +1,32 @@
 class Squad < Array
 
-  attr_accessor :coordinates, :tile, :targetable, :combat, :moved, :option, :fired, :assaulted, :troops
+  attr_accessor :coordinates, :tile, :targetable, :combat, :moved, :option, :fired, :assaulted, :troops, :num, :leader, :broken
   attr_reader :faction, :name
 
-  def initialize(name, faction, option)
+  def initialize(name, faction, option, troop, number)
     @name = name
     @faction = faction
     @option = option
+    @num = number.to_i
+    @troops = troop
+    num.times { self << troop.new }
+  end
+
+  def broken?
+    self.broken == true
+  end
+
+  def break_test
+    self.broken = true if Dice.roll_2dice > troops.ld
+  end
+
+  def quarter_of_a_squad
+    quarter_squad = self.length / 4
+  end
+
+  def add_leader(leader)
+    @leader = leader
+    self << leader
   end
 
   def drop_dead_troops
@@ -14,23 +34,15 @@ class Squad < Array
   end
 
   def out_of_range?(target)
-    distance(self.tile.x, self.tile.y, target.tile.x, target.tile.y) > self.last.bs_weapon.range
+    distance_tile(self.tile, target.tile) > self.last.bs_weapon.range
   end
 
-  def move_south(map)
-    map.move_south(self)
+  def fired?
+    self.fired == true
   end
 
-  def move_north(map)
-    map.move_north(self)
-  end
-
-  def move_east(map)
-    map.move_east(self)
-  end
-
-  def move_west(map)
-    map.move_west(self)
+  def moved?
+    self.moved == true
   end
 
   def wiped?

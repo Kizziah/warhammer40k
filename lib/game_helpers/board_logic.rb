@@ -30,3 +30,14 @@ end
 def display(string)
   puts(string) unless $test_mode
 end
+
+def determine_winner
+  puts 'Choas Victory' if marine_army.wiped?
+  puts 'Marine Victory' if choas_army.wiped?
+end
+
+def run_credits
+  puts "GAME DESIGNER MICHAEL DAVIS"
+  puts "THANKS TO GAME WORKSHOP"
+  exit
+end

@@ -11,12 +11,12 @@ class Game
 
   def turn(active_army, nonactive_army)
     puts active_army.type.to_s + 's Turn'
-    active_army.each {|squad| squad.moved = 'no' }
+    active_army.each {|squad| squad.moved = false }
     MovementPhase.new(board, active_army, nonactive_army)
-    active_army.each {|squad| squad.fired = 'no' }
+    active_army.each {|squad| squad.fired = false }
     ShootingPhase.new(board, active_army, nonactive_army)
-    #AssaultPhase.new
-    switch_turn(nonactive_army, active_army) unless game_over?
+    # AssaultPhase.new
+    switch_turn(nonactive_army, active_army) #unless game_over?
   end
 
   def create_marine_army
@@ -48,17 +48,5 @@ class Game
   def game_over?
     marine_army.wiped? || choas_army.wiped?
     determine_winner
-  end
-
-  def determine_winner
-    puts 'Choas Victory' if marine_army.wiped?
-    puts 'Marine Victory' if choas_army.wiped?
-    run_credits
-  end
-
-  def run_credits
-    puts "GAME DESIGNER MICHAEL DAVIS"
-    puts "THANKS TO GAME WORKSHOP"
-    exit
   end
 end

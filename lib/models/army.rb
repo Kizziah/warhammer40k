@@ -16,5 +16,4 @@ class Army < Array
   def wiped?
     self.length == 0
   end
-
 end

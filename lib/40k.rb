@@ -2,11 +2,9 @@ require 'awesome_print'
 require 'pry'
 
 require_relative 'controllers/shoot'
-require_relative 'controllers/shoot_target'
 require_relative 'controllers/combat'
 require_relative 'controllers/assault'
 require_relative 'controllers/squad_actions'
-
 
 require_relative 'models/troop'
 
