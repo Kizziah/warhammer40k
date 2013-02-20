@@ -21,7 +21,7 @@ class MovementPhase
 
   def move_squads_x_y_coordinates(squad, army)
     current_tile = squad.tile
-    puts 'Move ' + squad.name.to_s + ' squad'
+    puts "Move #{squad.name} squad"
     puts 'Current spot x ' + current_tile.x.to_s + ' y ' + current_tile.y.to_s
     puts 'plot x coordinate'
     reply_x = gets.chomp
