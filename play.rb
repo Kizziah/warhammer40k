@@ -24,8 +24,3 @@ game.turn(choas, marine)
 
 # window = GameWindow.new
 # window.show
-
-
-
-# # TileWidth = 10
-
