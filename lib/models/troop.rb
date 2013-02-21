@@ -1,6 +1,6 @@
 class Troop
   attr_accessor :name, :ws, :bs, :s, :t, :w, :a, :save, :autosave, :i, :ld, :shoot, :bs_weapon,
-                :ws_weapon, :combat, :cover_save, :coordinates, :points, :tile
+                :ws_weapon, :combat, :cover_save, :coordinates, :points, :tile, :type, :result
 
   def initialize(stats = {})
     @name = stats[:name]
@@ -20,7 +20,7 @@ class Troop
   end
 
   def shoot(target, shoot_rolls = {})
-    Shoot.new(self, target, shoot_rolls)
+   ShootHelper.new(self, target, shoot_rolls)
   end
 
   def assault(target, attack_rolls = {}, defend_rolls = {})

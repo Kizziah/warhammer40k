@@ -119,8 +119,10 @@ class Shoot
     when 3 then 2
     when 4 then 2
     when 5 then 2
+    when 6 then 2
     when -1 then 5
     when -2 then 6
+    when -3 then 6
     end
     strength_roll >= roll_needed
   end

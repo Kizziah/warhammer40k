@@ -1,6 +1,7 @@
 class Marine < Troop
 
   def initialize(stat = {})
+    @type = 'troop'
     @ws =  4
     @bs = 4
     @s = 4
@@ -46,8 +47,20 @@ end
 
 class ThousandSon < Marine
   def initialize(stat = {})
-    @bs_weapon = Weapon.new(24, 4, 3, 1, "10Kboltgun")
+    @type = 'troop'
+    @ws = 4
+    @bs = 4
+    @s = 4
+    @t = 4
+    @w = 1
+    @a = 1
+    @i = 4
+    @ld = 8
+    @save = 3
     @autosave = 4
+    @bs_weapon = Weapon.new(24, 4, 3, 1, "10Kboltgun")
+    @ws_weapon = Weapon.new(0, 4, 7, 1, "knive")
+    @points = 15
   end
 end
 
@@ -59,6 +72,7 @@ end
 
 class Havoc < Marine
   def initialize(stat = {})
+    @type = 'troop'
     @ws = 4
     @bs = 4
     @s = 4

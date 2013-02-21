@@ -1,6 +1,7 @@
 class Cultist < Troop
 
   def initialize(stat = {})
+    @type = 'troop'
     @ws = stat[:ws] || 3,
     @bs = stat[:bs] || 3,
     @s =  stat[:bs] || 3,

@@ -4,16 +4,16 @@ describe Troop do
 
   describe 'shoot' do
     before(:each) do
-      @thousandson = ThousandSon.create
-      @havoc = Havoc.create
+      @thousandson = ThousandSon.new
+      @havoc = Havoc.new
       @ork =  Loota.create
-      @marine = Marine.create
-      @cultist = Cultist.create
+      @marine = Marine.new
+      @cultist = Cultist.new
     end
 
-    it "should auto kill the ork when a 6 hit, 6 strength, and 3 AP" do
-      shot = @thousandson.shoot(@ork, hit: 6, strength: 6)
-      @ork.dead?.should == true
+    it "should auto kill the marine when a 6 hit, 6 strength, and 3 AP" do
+      shot = @thousandson.shoot(@marine, hit: 6, strength: 6, armor: 1)
+      @marine.dead?.should == true
     end
 
     it "should miss the ork when a 1 hit is rolled" do
@@ -31,9 +31,9 @@ describe Troop do
       @ork.dead?.should == false
     end
 
-    it "should kill ork because armor save 5 is rolled" do
-      @cultist.shoot(@ork, hit: 6, strength: 6, armor: 5)
-      @ork.dead?.should == true
+    it "should kill marine because armor save 2 is rolled" do
+      @cultist.shoot(@marine, hit: 6, strength: 6, armor: 2)
+      @marine.dead?.should == true
     end
 
     it "should not kill the havoc when with 3 armor roll" do
@@ -59,10 +59,10 @@ describe Troop do
 
   describe 'assault' do
     before(:each) do
-      @thousandson = ThousandSon.create
-      @orc = Loota.create
-      @havoc = Havoc.create
-      @cultist = Cultist.create
+      @thousandson = ThousandSon.new
+      @orc = Loota.new
+      @havoc = Havoc.new
+      @cultist = Cultist.new
     end
 
     it "should thousandson attack first, kills orc, and not get attacked" do
@@ -133,8 +133,8 @@ describe Troop do
 
   describe 'move' do
     before(:each) do
-      @marine = Marine.create
-      @cultist = Cultist.create
+      @marine = Marine.new
+      @cultist = Cultist.new
     end
 
     it "should move the distance ordered" do

@@ -11,7 +11,7 @@ class Weapon
   end
 end
 
-  Types = {
+  WeaponTypes = {
 
     lascannon: [48, 8, 2, 'heavy'],
     boltgun: [24, 4, 5, 'normal'],
