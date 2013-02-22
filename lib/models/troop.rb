@@ -47,6 +47,10 @@ class Troop
     w == 0
   end
 
+  def new_bs_weapon(weapon)
+    self.bs_weapon = weapon
+  end
+
   def out_of_range?(target)
     distance(self.tile.x, self.tile.y, target.tile.x, target.tile.y) > bs_weapon.range
   end
@@ -56,7 +60,7 @@ class Troop
   end
 
   def in_combat?
-    combat == "combat"
+    combat == true
   end
 
   def has_autosave?

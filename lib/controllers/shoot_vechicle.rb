@@ -26,15 +26,17 @@ class ShootVechicle
 
   def vechicle_armor_test
    vechicle_damage_chart if target.front_armour < penetration_test
-   target.hp - 1 if target.front_armour == penetration_test
+   target.hp -= 1 if target.front_armour == penetration_test
   end
 
   def ap_bonus
-    1 if weapon.ap == 2
-    2 if weapon.ap == 1
+  @chart_roll += 1 if weapon.ap == 2
+  @chart_roll += 2 if weapon.ap == 1
   end
 
   def vechicle_damage_chart
+    ap_bonus if weapon.ap <= 2
+    target.hp -= 1
     chart_result = case chart_roll
     when 1 then crew_shaken
     when 2 then crew_shaken
@@ -58,7 +60,7 @@ class ShootVechicle
   end
 
   def weapon_destroyed
-    puts "destroy a weapon"
+    target.destroy_random_weapon
   end
 
   def crew_stunned
@@ -76,7 +78,6 @@ class ShootVechicle
   end
 
   def immombilised
-    puts 'immombilised'
     target.mobility = false
   end
 
