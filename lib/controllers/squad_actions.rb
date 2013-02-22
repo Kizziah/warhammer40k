@@ -1,4 +1,3 @@
-
 def show_squads(army)
   army.collect do |m|
   squads = m.name

@@ -27,7 +27,6 @@ class Vechicle
     self.hp == 0
   end
 
-
   def peneration_roll
     weapon.ap + Dice.roll
   end
@@ -69,14 +68,9 @@ class Vechicle
     bs_weapon_3.range = 0 if roll == 5 || roll == 6
   end
 
-
   def immobilised?
     self.mobility == false
   end
 
-  def explodes
-    self.hp = 0
-    area = Dice.roll
-    BlastArea.new(area, 3, 7)
-  end
+
 end

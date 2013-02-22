@@ -1,4 +1,5 @@
 class Marine < Troop
+  attr_accessor :tile, :coordinates
 
   def initialize(stat = {})
     @type = 'troop'

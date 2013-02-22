@@ -1,11 +1,13 @@
 class Board
 
-  attr_reader :width, :height, :tiles
+  attr_reader :width, :height, :tiles, :all_units
 
   def initialize(width, height)
     @width = width
     @height = height
     @tiles = setup_tiles
+    @all_units = all_units
+    @all_units = []
   end
 
   def setup_tiles
@@ -30,6 +32,7 @@ class Board
     troop.coordinates = tiles[x][y].coordinates
     tiles[x][y].occupant = troop
     troop.tile = tiles[x][y]
+    all_units << troop
   end
 
   def move_south(troop)

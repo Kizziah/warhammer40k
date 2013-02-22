@@ -1,9 +1,9 @@
 class ShootVechicle
 
   attr_reader :result, :hit_roll, :chart_roll, :penetration_roll, :area_roll, :bs,
-              :target, :weapon, :shooter
+              :target, :weapon, :shooter, :all_units
 
-  def initialize(shooter, target, shooter_rolls = {})
+  def initialize(shooter, target, shooter_rolls = {}, all_units = {} )
     @hit_roll = shooter_rolls[:hit] || Dice.roll
     @penetration_roll = shooter_rolls[:strength] || Dice.roll
     @chart_roll = shooter_rolls[:chart] || Dice.roll
@@ -12,6 +12,7 @@ class ShootVechicle
     @shooter = shooter
     @weapon = shooter.bs_weapon
     @bs = @shooter.bs
+    @all_units = all_units
     hit_test
   end
 
@@ -65,8 +66,9 @@ class ShootVechicle
   end
 
   def explode
-    target.explodes
-    BlastArea.new(area_roll, 3, 7)
+    target.hp = 0
+    area = Dice.roll
+    BlastArea.new(area_roll, target, @all_units)
   end
 
   def miss

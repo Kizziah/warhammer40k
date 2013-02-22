@@ -14,3 +14,4 @@ class CreateArmies
     @bloodmarine_squad = Squad.new('Bloodmarine', 'marine', 2, Marine.new, 5 )
   end
 end
+

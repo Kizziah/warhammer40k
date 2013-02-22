@@ -1,4 +1,5 @@
 class LandRaider < Vechicle
+  attr_accessor :tile, :coordinates
 
   def initialize(stats = {})
     @type = 'vechicle'

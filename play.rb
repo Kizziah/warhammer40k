@@ -1,4 +1,5 @@
 require_relative 'lib/40k'
+
 # require 'gosu'
 
 # game = Game.new
@@ -16,19 +17,24 @@ require_relative 'lib/40k'
 
 # havoc.break_test
 
-tyler = Cultist.new
-havoc = Havoc.new
-tank = LandRaider.new
+@landraider = LandRaider.new
+@havoc = Havoc.new
+@cultist = Cultist.new
+@board = Board.new(10, 10)
+@board.place_troop(@landraider, 4, 2)
+@board.place_troop(@cultist, 4, 1)
+@board.place_troop(@havoc, 9, 9)
+@all_units = @board.all_units
 
+puts distance_tile(@landraider.tile, @cultist.tile)
 
+@havoc.shoot(@landraider, {hit: 6, strength: 6, chart: 6 }, @all_units )
+puts @landraider.wrecked?
+puts @cultist.dead?
 
-havoc.shoot(tank, hit: 5, strength: 6)
-puts tank.wrecked?
-
-# puts tyler.s
-
-
-
+# def within_range?(target)
+#   distance_tile(tile, ) < inches
+# end
 
 # havoc.shoot(tank)
 # puts havoc.broken?

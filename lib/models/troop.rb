@@ -19,8 +19,8 @@ class Troop
     @points = stats [:points]
   end
 
-  def shoot(target, shoot_rolls = {})
-   ShootHelper.new(self, target, shoot_rolls)
+  def shoot(target, shoot_rolls = {}, all_units = {})
+   ShootHelper.new(self, target, shoot_rolls, all_units)
   end
 
   def assault(target, attack_rolls = {}, defend_rolls = {})
@@ -47,9 +47,13 @@ class Troop
     w == 0
   end
 
-  # def out_of_range?(target)
-  #   distance(self.tile.x, self.tile.y, target.tile.x, target.tile.y) > bs_weapon.range
-  # end
+  def out_of_range?(target)
+    distance(self.tile.x, self.tile.y, target.tile.x, target.tile.y) > bs_weapon.range
+  end
+
+  def within_range?(target)
+    distance(self.tile.x, self.tile.y, target.tile.x, target.tile.y) < bs_weapon.range
+  end
 
   def in_combat?
     combat == "combat"
