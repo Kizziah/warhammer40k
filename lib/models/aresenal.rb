@@ -10,3 +10,4 @@
 @@reaper_autocannon = Weapon.send(:reaper_autocannon)
 @@infernoboltgun = Weapon.send(:infernoboltgun)
 @@eldar_reapergun = Weapon.send(:eldar_reapergun)
+@@boltpistol = Weapon.send(:boltpistol)

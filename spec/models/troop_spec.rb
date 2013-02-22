@@ -4,10 +4,10 @@ describe Troop do
 
   describe 'shoot' do
     before(:each) do
-      @thousandson = ThousandSon.new
-      @havoc = Havoc.new
+      @thousandson = ThousandSon.create
+      @havoc = Havoc.create
       @ork =  Loota.create
-      @marine = Marine.new
+      @marine = Marine.create
       @cultist = Cultist.new
     end
 
@@ -59,9 +59,9 @@ describe Troop do
 
   describe 'assault' do
     before(:each) do
-      @thousandson = ThousandSon.new
-      @orc = Loota.new
-      @havoc = Havoc.new
+      @thousandson = ThousandSon.create
+      @orc = Loota.create
+      @havoc = Havoc.create
       @cultist = Cultist.new
     end
 
@@ -133,7 +133,7 @@ describe Troop do
 
   describe 'move' do
     before(:each) do
-      @marine = Marine.new
+      @marine = Marine.create
       @cultist = Cultist.new
     end
 

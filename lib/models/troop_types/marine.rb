@@ -1,95 +1,56 @@
 class Marine < Troop
-  attr_accessor :tile, :coordinates
 
-  def initialize(stat = {})
-    @type = 'troop'
-    @ws =  4
-    @bs = 4
-    @s = 4
-    @t = 4
-    @w = 1
-    @a = 1
-    @i = 4
-    @ld = 8
-    @save = 3
-    @autosave = 0
-    @bs_weapon = Weapon.new(24, 4, 4, 1, "boltgun")
-    @ws_weapon = Weapon.new(0, 4, 7, 1, "knive")
-    @points = 15
+  def self.create(stats = {})
+    new(
+      :ws => stats[:ws] || 4,
+      :bs => stats[:bs] || 4,
+      :s =>  stats[:bs] || 4,
+      :t => stats[:t]   || 4,
+      :w => stats[:w]   || 1,
+      :a => stats[:a]   || 1,
+      :i => stats[:i]   || 4,
+      :ld => stats[:ld] || 8,
+      :save => stats[:save] || 3,
+      :autosave => stats[:autosave] || 0,
+      :bs_weapon => stats[:bs_weapon] || @@boltgun,
+      :ws_weapon => stats[:ws_weapon] || Weapon.new(0, 4, 7, 1, "knive"),
+      :points => stats[:points] || 15
+    )
   end
 
   def new
-    Marine.new
-  end
-end
-
-class MarineSergeant < Marine
-
-  def initialize(stat = {})
-    @ws =  4
-    @bs = 4
-    @s = 4
-    @t = 4
-    @w = 1
-    @a = 2
-    @i = 4
-    @ld = 9
-    @save = 3
-    @autosave = 0
-    @bs_weapon = Weapon.new(24, 4, 4, 1, "boltpistol")
-    @ws_weapon = Weapon.new(0, 4, 7, 1, "chainsword")
-    @points = 15
+    Marine.create
   end
 
-  def new
-    MarineSergeant.new
-  end
 end
 
 class ThousandSon < Marine
-  def initialize(stat = {})
-    @type = 'troop'
-    @ws = 4
-    @bs = 4
-    @s = 4
-    @t = 4
-    @w = 1
-    @a = 1
-    @i = 4
-    @ld = 8
-    @save = 3
-    @autosave = 4
-    @bs_weapon = Weapon.new(24, 4, 3, 1, "10Kboltgun")
-    @ws_weapon = Weapon.new(0, 4, 7, 1, "knive")
-    @points = 15
+  def self.create
+    Marine.create(:bs_weapon => Weapon.new(24, 4, 3, 1, 'dasf'), :autosave => 4, :ld => 10)
   end
+
+  def new
+    ThousandSon.create
+  end
+
 end
 
 class PlagueMarine < Marine
-  def initialize(stat = {})
-    @t = 5
+  def self.create
+    Marine.create(:t => 5)
+  end
+
+  def new
+    PlagueMarine.create
   end
 end
 
 class Havoc < Marine
-  def initialize(stat = {})
-    @type = 'troop'
-    @ws = 4
-    @bs = 4
-    @s = 4
-    @t = 4
-    @w = 1
-    @a = 1
-    @i = 4
-    @ld = 8
-    @save = 3
-    @autosave = 0
-    @bs_weapon = Weapon.new(48, 9, 2, 1, "lascannon")
-    @ws_weapon = Weapon.new(0, 4, 7, 1, "knive")
-    @points = 15
+  def self.create
+    Marine.create(:bs_weapon => @@lascannon)
   end
 
   def new
-    Havoc.new
+    Havoc.create
   end
 end

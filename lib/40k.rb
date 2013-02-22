@@ -7,6 +7,7 @@ require_relative 'controllers/assault'
 require_relative 'controllers/squad_actions'
 require_relative 'controllers/shoot_helper'
 require_relative 'controllers/shoot_vehicle'
+require_relative 'controllers/vehicle_explosion'
 
 require_relative 'models/troop'
 
@@ -28,7 +29,6 @@ require_relative 'models/weapon'
 require_relative 'models/game'
 require_relative 'models/tile'
 require_relative 'models/board'
-require_relative 'models/blast_area'
 require_relative 'models/aresenal'
 
 require_relative 'game_helpers/point'

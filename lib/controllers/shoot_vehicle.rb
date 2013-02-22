@@ -70,7 +70,7 @@ class ShootVehicle
   def explode
     target.hp = 0
     area = Dice.roll
-    BlastArea.new(area_roll, target, @all_units)
+    VehicleExplosion.new(area_roll, target, @all_units)
   end
 
   def miss

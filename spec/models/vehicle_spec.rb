@@ -5,7 +5,7 @@ describe Vehicle do
     describe 'LandRaider' do
       before(:each) do
         @landraider = LandRaider.new
-        @havoc = Havoc.new
+        @havoc = Havoc.create
         @cultist = Cultist.new
         @board = Board.new(10, 10)
         @board.place_troop(@landraider, 4, 2)
@@ -66,7 +66,7 @@ describe Vehicle do
     describe 'Rhino' do
       before(:each) do
         @rhino = Rhino.new
-        @havoc = Havoc.new
+        @havoc = Havoc.create
         @cultist = Cultist.new
         @board = Board.new(10, 10)
         @board.place_troop(@rhino, 4, 2)

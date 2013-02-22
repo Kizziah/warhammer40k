@@ -25,6 +25,6 @@ class ShootHelper
   end
 
   def blast_area
-    BlastArea.new(shooter, target, shooter_rolls)
+    VehicleExplosion.new(shooter, target, shooter_rolls)
   end
 end

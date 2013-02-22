@@ -17,6 +17,7 @@ class Troop
     @bs_weapon = stats[:bs_weapon]
     @ws_weapon = stats[:ws_weapon]
     @points = stats [:points]
+    @type = stats [:type] || 'troop'
   end
 
   def shoot(target, shoot_rolls = {}, all_units = {})
@@ -44,7 +45,7 @@ class Troop
   end
 
   def dead?
-    w == 0
+    self.w == 0
   end
 
   def new_bs_weapon(weapon)

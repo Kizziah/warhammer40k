@@ -1,4 +1,7 @@
 require_relative 'lib/40k'
 
-tank = Rhino.new
+m = Havoc.create
+j = LandRaider.new
 
+
+puts m.bs_weapon.strength
