@@ -12,7 +12,7 @@ class ShootHelper
 
   def setup_shot
     shoot_troop if target.type == 'troop'
-    shoot_vechicle if target.type == 'vechicle'
+    shoot_vehicle if target.type == 'vehicle'
     blast_area if target.type == 'blast_area'
   end
 
@@ -20,8 +20,8 @@ class ShootHelper
     Shoot.new(shooter, target, shooter_rolls)
   end
 
-  def shoot_vechicle
-    ShootVechicle.new(shooter, target, shooter_rolls, all_units)
+  def shoot_vehicle
+    ShootVehicle.new(shooter, target, shooter_rolls, all_units)
   end
 
   def blast_area
