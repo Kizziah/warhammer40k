@@ -11,7 +11,8 @@ class Terminator < Troop
       :save => stat[:save] || 2,
       :autosave => stat[:autosave] || 5,
       :bs_weapon => stat[:bs_weapon] || @@stormbolter,
-      :ws_weapon => stat[:ws_weapon] || Weapon.new(0, 8, 2, 1, 'powerfist')
+      :ws_weapon => stat[:ws_weapon] || @@powerfist,
+      :points => stat[:points] || 40
     )
   end
 
@@ -24,7 +25,7 @@ end
 class ChoasTerminator < Troop
 
   def self.create
-    Terminator.create
+    Terminator.create(:bs_weapon => @@combibolter, :ws_weapon => @@poweraxe, :points => 31)
   end
 
   def new

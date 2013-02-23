@@ -31,5 +31,4 @@ describe Squad do
       @squad.broken?.should == true
     end
   end
-
 end

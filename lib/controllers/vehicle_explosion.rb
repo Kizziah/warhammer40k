@@ -20,9 +20,8 @@ class VehicleExplosion
   end
 
   def damage(troop)
-    generic = Marine.create
+    generic = Cultist.new
     generic.bs_weapon = blast
     Shoot.new(generic, troop, hit:6)
   end
-
 end

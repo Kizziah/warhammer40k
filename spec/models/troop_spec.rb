@@ -9,6 +9,12 @@ describe Troop do
       @ork =  Loota.create
       @marine = Marine.create
       @cultist = Cultist.new
+      @board = Board.new(30, 30)
+      @board.place_troop(@thousandson, 11, 10)
+      @board.place_troop(@marine, 3, 2)
+      @board.place_troop(@havoc, 10, 10)
+      @board.place_troop(@cultist, 2, 2)
+      @board.place_troop(@ork, 3, 7)
     end
 
     it "should auto kill the marine when a 6 hit, 6 strength, and 3 AP" do
@@ -55,6 +61,12 @@ describe Troop do
       shot = @havoc.shoot(@thousandson, hit: 6, strength: 6, armor: 6, autosave: 4)
       @thousandson.dead?.should == false
     end
+
+    it "should orc should shot 3 times with a delfgun" do
+      $results.clear
+      @ork.shoot(@marine)
+      $results.length.should == 3
+    end
   end
 
   describe 'assault' do
@@ -85,17 +97,17 @@ describe Troop do
       @orc.a.should == 0
     end
 
-    it "cultist assaults havoc, havoc attacks first misses then killed by cultist" do
-      @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, { hit: 1 })
-      @cultist.dead?.should == false
-      @havoc.dead?.should == true
-    end
+    # it "cultist assaults havoc, havoc attacks first misses then killed by cultist" do
+    #   @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, { hit: 1 })
+    #   @cultist.dead?.should == false
+    #   @havoc.dead?.should == true
+    # end
 
-    it "cultist assaults havoc, havoc attacks first kills cultist" do
-      @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, {hit: 6, hit: 6, strength: 6, armor: 1})
-      @cultist.dead?.should == true
-      @havoc.dead?.should == false
-    end
+    # it "cultist assaults havoc, havoc attacks first kills cultist" do
+    #   @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, {hit: 6, hit: 6, strength: 6, armor: 1})
+    #   @cultist.dead?.should == true
+    #   @havoc.dead?.should == false
+    # end
 
     it "havoc attacks thousandson both are killed" do
       @havoc.assault(@thousandson, {hit: 6, strength: 6, armor: 1, autosave: 0}, {hit: 6, strength: 6, armor: 1, autosave: 0})

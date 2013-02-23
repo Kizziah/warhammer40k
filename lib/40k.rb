@@ -8,6 +8,7 @@ require_relative 'controllers/squad_actions'
 require_relative 'controllers/shoot_helper'
 require_relative 'controllers/shoot_vehicle'
 require_relative 'controllers/vehicle_explosion'
+require_relative 'controllers/gets_hot'
 
 require_relative 'models/troop'
 
@@ -30,6 +31,8 @@ require_relative 'models/game'
 require_relative 'models/tile'
 require_relative 'models/board'
 require_relative 'models/aresenal'
+
+require_relative 'models/squad_types/ultra_terminator_squad'
 
 require_relative 'game_helpers/point'
 require_relative 'game_helpers/board_logic'

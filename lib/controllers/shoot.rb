@@ -1,4 +1,5 @@
 class Shoot
+  $results = []
 
   attr_reader :result, :hit_roll, :strength_roll, :armor_roll, :autosave_roll, :bs,
               :target, :weapon, :shooter
@@ -41,6 +42,7 @@ class Shoot
       ap_test
     else
       @result = "SvsT"
+      $results << @result
     end
   end
 
@@ -55,6 +57,7 @@ class Shoot
   def armor_test
     if armor_roll >= target.save
       @result = "ARMOR"
+      $results << @result
     else
       have_autosave
     end
@@ -71,6 +74,7 @@ class Shoot
   def autosave_test
     if autosave_roll >= target.autosave
       @result = "AUTOSAVE"
+      $results << @result
     else
       wound
     end
@@ -90,11 +94,14 @@ class Shoot
 
   def miss
     @result = "miss"
+    $results << @result
+    GetsHot.new(shooter) if hit_roll == 1 && @weapon.special == 'getshot'
   end
 
   def wound
     target.wound
     @result = "WOUND"
+    $results << @result
   end
 
   def run_armor_test?

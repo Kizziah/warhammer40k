@@ -1,7 +1,7 @@
 class CreateArmies
 
   attr_accessor :havoc_squad, :cultist_squad, :ultramarine_squad,
-              :bloodmarine_squad
+                :bloodmarine_squad
 
   def initialize
     create_squads

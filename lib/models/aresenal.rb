@@ -11,3 +11,8 @@
 @@infernoboltgun = Weapon.send(:infernoboltgun)
 @@eldar_reapergun = Weapon.send(:eldar_reapergun)
 @@boltpistol = Weapon.send(:boltpistol)
+@@autopistol = Weapon.send(:autopistol)
+@@powersword = Weapon.send(:powersword)
+@@powerfist = Weapon.send(:powerfirst)
+@@poweraxe = Weapon.send(:poweraxe)
+@@combibolter = Weapon.send(:combibolter)

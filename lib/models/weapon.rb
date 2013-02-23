@@ -1,6 +1,6 @@
 class Weapon
 
-  attr_accessor :range, :strength, :ap, :type, :shots, :special
+  attr_accessor :range, :strength, :ap, :type, :shots, :special, :points
 
   def initialize(range, strength, ap, shots, type, special = {})
     @range = range
@@ -26,7 +26,11 @@ class Weapon
     eldar_reapergun: [36, 7, 4, 1, 'eldar_reapergun'],
     infernoboltgun: [24, 4, 3, 1, 'infernoboltgun', 'rapidfire'],
     boltpistol: [12, 12, 4, 5, 'boltpistol', 'pistol'],
-    autopistol: [16, 3, 7, 1, 'autopistol', 'pistol']
+    autopistol: [16, 3, 7, 1, 'autopistol', 'pistol'],
+    powersword: [0, 4, 3, 1, 'powersword'],
+    powerfirst: [0, 8, 2, 1, 'powerfirst', 'unwiedly'],
+    poweraxe: [0, 5, 2, 1, 'poweraxe', 'unwiedly'],
+    combibolter: [24, 4, 5, 1, 'combibolter', 'twinlinked' ]
 
   }
 

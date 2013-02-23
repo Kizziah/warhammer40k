@@ -12,7 +12,3 @@ end
 def distance_tile(tile1, tile2)
   distance(tile1.x, tile1.y, tile2.x, tile2.y)
 end
-
-def create_cirlce(tile)
-
-end

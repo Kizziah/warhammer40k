@@ -1,6 +1,7 @@
 class Squad < Array
 
-  attr_accessor :coordinates, :tile, :targetable, :combat, :moved, :option, :fired, :assaulted, :troops, :num, :leader, :broken
+  attr_accessor :coordinates, :tile, :targetable, :combat, :moved, :option,
+                :fired, :assaulted, :troops, :num, :leader, :points, :broken
   attr_reader :faction, :name
 
   def initialize(name, faction, option, troop, number)
@@ -21,7 +22,13 @@ class Squad < Array
   def add_troop(type, weapon = {})
   type.bs_weapon = weapon unless weapon == {}
      self << type
+     self.points += type.points
   end
+
+  # def equip_bs_weapon(troop, weapon)
+  #   troop.bs_weapon = weapon
+  #   self.points += weapon.points
+  # end
 
   def drop_dead_troops
     self.delete_if { |troop| troop.dead? }

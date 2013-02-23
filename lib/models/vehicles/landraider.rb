@@ -1,18 +1,26 @@
 class LandRaider < Vehicle
-  attr_accessor :tile, :coordinates
+  attr_accessor :tile, :coordinates, :weapons
 
   def initialize(stats = {})
     @type = 'vehicle'
-    @crew = 4
+    @crew = Marine.create
     @bs = 4
     @front_armour = 14
     @back_armour = 14
     @side_armour = 14
     @hp = 4
-    @bs_weapon_1 = Weapon.new(36, 5, 5, 3, "twin-linked heavybolter")
-    @bs_weapon_2 = Weapon.new(48, 9, 2, 1, 'twin-linked lascannon')
-    @bs_weapon_3 = Weapon.new(48, 9, 2, 1, "twin-linked lascannon")
+    @bs_weapon_1 = @@heavybolter
+    @bs_weapon_2 = @@lascannon
+    @bs_weapon_3 = @@lascannon
+    @weapons = []
+    @weapons << bs_weapon_1 << bs_weapon_2 << bs_weapon_3
     @transport_capacity = 10
+  end
+
+  def shoot(target)
+    @crew.tile = self.tile
+    @crew.bs_weapon = @bs_weapon_2
+    @crew.shoot(target)
   end
 
   def destroy_random_weapon
