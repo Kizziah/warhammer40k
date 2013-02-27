@@ -4,20 +4,21 @@ describe Vehicle do
 
     describe 'LandRaider' do
       before(:each) do
-        @landraider = LandRaider.new
+        @landraider = LandRaider.create
         @havoc = Havoc.create
         @cultist = Cultist.new
         @board = Board.new(10, 10)
         @board.place_troop(@landraider, 4, 2)
-        @board.place_troop(@cultist, 2, 2)
+        @board.place_troop(@cultist, 3, 2)
         @board.place_troop(@havoc, 9, 9)
         @all_units = @board.all_units
       end
 
-      it "should explode from being shot by lascannon and explosion should kill cultist that is 5 inches away" do
+      it "should explode from being shot by lascannon and explosion should affect cultist that is 1 inches away" do
+        $results.clear
         @havoc.shoot(@landraider, {hit: 6, strength: 6, chart: 6 }, @all_units )
         @landraider.wrecked?.should == true
-        # @cultist.dead?.should == true
+        $results.length.should == 1
       end
 
       it "should be shot twice, both shots destroy a different weapon" do
@@ -85,5 +86,6 @@ describe Vehicle do
         @havoc.shoot(@rhino, hit: 6, strength: 6, chart: 3 )
         @rhino.mobility.should == false
       end
+
     end
 end

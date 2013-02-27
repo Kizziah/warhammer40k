@@ -92,5 +92,4 @@ class ShootVehicle
   def penetration_test
     weapon.strength.to_i + penetration_roll
   end
-
 end

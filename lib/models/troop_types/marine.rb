@@ -21,36 +21,40 @@ class Marine < Troop
   def new
     Marine.create
   end
-
 end
 
-class ThousandSon < Marine
+class MarineSergeant
   def self.create
-    Marine.create(:bs_weapon => Weapon.new(24, 4, 3, 1, 'dasf'), :autosave => 4, :ld => 10)
+    Marine.create(:ld => 9, :a => 2, :bs_weapon => @@boltpistol, :ws_weapon => @@chainsword)
   end
+end
 
-  def new
-    ThousandSon.create
+class ChoasMarine < Marine
+  def self.create
+    Marine.create(:points => 13)
   end
+end
 
+class KhorneBerzerker
+  def self.create
+    Marine.create(:points => 19, :ws => 5, :bs_weapon => @@boltpistol, :ws_weapon => @@chainsword)
+  end
 end
 
 class PlagueMarine < Marine
   def self.create
     Marine.create(:t => 5)
   end
+end
 
-  def new
-    PlagueMarine.create
+class ThousandSon < Marine
+  def self.create
+    Marine.create(:bs_weapon => @@infernoboltgun, :autosave => 4, :ld => 10, :points => 23)
   end
 end
 
-class Havoc < Marine
+class ThousandSonSocerer
   def self.create
-    Marine.create(:bs_weapon => @@lascannon)
-  end
-
-  def new
-    Havoc.create
+    Marine.create(:a => 2, :bs_weapon => @@infernoboltgun, :ws_weapon => @@powersword, :autosave => 4, :ld => 10)
   end
 end

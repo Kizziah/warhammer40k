@@ -16,6 +16,8 @@ class Vehicle
     @bs_weapon_2 = stats[:bs_weapon_2]
     @bs_weapon_3 = stats[:bs_weapon_3]
     @transport_capacity = stats[:trasport_capacity]
+
+    assign_crew_weapons
   end
 
   def wrecked?
@@ -33,5 +35,4 @@ class Vehicle
   def immobilised?
     self.mobility == false
   end
-
 end

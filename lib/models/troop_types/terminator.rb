@@ -16,9 +16,6 @@ class Terminator < Troop
     )
   end
 
-  def new
-    Terminator.create
-  end
 end
 
 
@@ -26,10 +23,6 @@ class ChoasTerminator < Troop
 
   def self.create
     Terminator.create(:bs_weapon => @@combibolter, :ws_weapon => @@poweraxe, :points => 31)
-  end
-
-  def new
-    Terminator.create
   end
 
 end

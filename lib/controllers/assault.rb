@@ -94,7 +94,7 @@ class Assault
   end
 
   def hit_defender?
-    roll_needed = case ws - d_ws
+    roll_needed = case ws - @d_ws
     when 0 then 4
     when 1 then 4
     when 2 then 4

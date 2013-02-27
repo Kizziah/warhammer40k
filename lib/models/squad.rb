@@ -2,6 +2,7 @@ class Squad < Array
 
   attr_accessor :coordinates, :tile, :targetable, :combat, :moved, :option,
                 :fired, :assaulted, :troops, :num, :leader, :points, :broken
+
   attr_reader :faction, :name
 
   def initialize(name, faction, option, troop, number)

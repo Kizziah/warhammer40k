@@ -18,6 +18,8 @@ require_relative 'models/troop_types/loota'
 require_relative 'models/troop_types/terminator'
 require_relative 'models/troop_types/terminator'
 require_relative 'models/troop_types/nil_troop'
+require_relative 'models/troop_types/tank_gunner'
+require_relative 'models/troop_types/kharn'
 
 require_relative 'models/vehicles/vehicle'
 require_relative 'models/vehicles/landraider'
@@ -33,6 +35,11 @@ require_relative 'models/board'
 require_relative 'models/aresenal'
 
 require_relative 'models/squad_types/ultra_terminator_squad'
+require_relative 'models/squad_types/thousand_son_squad'
+require_relative 'models/squad_types/havoc_squad'
+require_relative 'models/squad_types/choas_marine_squad'
+
+require_relative 'models/barracks'
 
 require_relative 'game_helpers/point'
 require_relative 'game_helpers/board_logic'

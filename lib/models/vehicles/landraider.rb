@@ -1,26 +1,41 @@
 class LandRaider < Vehicle
-  attr_accessor :tile, :coordinates, :weapons
+  attr_accessor :tile
 
-  def initialize(stats = {})
-    @type = 'vehicle'
-    @crew = Marine.create
-    @bs = 4
-    @front_armour = 14
-    @back_armour = 14
-    @side_armour = 14
-    @hp = 4
-    @bs_weapon_1 = @@heavybolter
-    @bs_weapon_2 = @@lascannon
-    @bs_weapon_3 = @@lascannon
-    @weapons = []
-    @weapons << bs_weapon_1 << bs_weapon_2 << bs_weapon_3
-    @transport_capacity = 10
+  def self.create(stats = {})
+    new(
+      :front_armour => stats[:front_armour] || 14,
+      :back_armour => stats[:back_armour] || 14,
+      :side_armour => stats[:side_armour] || 14,
+      :hp => stats[:hp] || 4,
+      :bs_weapon_1 => stats[:bs_weapon_1] || @@heavybolter,
+      :bs_weapon_2 => stats[:bs_weapon_2] || @@lascannon,
+      :bs_weapon_3 => stats[:bs_weapon_3] || @@lascannon,
+      :transport_capacity => stats[:points] || 10
+  )
   end
 
-  def shoot(target)
-    @crew.tile = self.tile
-    @crew.bs_weapon = @bs_weapon_2
-    @crew.shoot(target)
+  def assign_crew_weapons
+    @gunner_1 = TankGunner.create
+    @gunner_1.bs_weapon = bs_weapon_1
+    @gunner_2 = TankGunner.create
+    @gunner_2.bs_weapon = bs_weapon_2
+    @gunner_3 = TankGunner.create
+    @gunner_3.bs_weapon = bs_weapon_3
+  end
+
+  def shoot_weapon_1(target)
+    @gunner_1.tile = self.tile
+    @gunner_1.shoot(target)
+  end
+
+  def shoot_weapon_2(target)
+    @gunner_2.tile = self.tile
+    @gunner_2.shoot(target)
+  end
+
+  def shoot_weapon_3(target)
+    @gunner_3.tile = self.tile
+    @gunner_3.shoot(target)
   end
 
   def destroy_random_weapon
@@ -35,24 +50,24 @@ class LandRaider < Vehicle
   end
 
   def destroy_bs_weapon_1
-    if bs_weapon_1.range != 0
-      bs_weapon_1.range = 0
+    if @gunner_1.bs_weapon.range != 0
+        @gunner_1.bs_weapon.range = 0
     else
       destroy_random_weapon
     end
   end
 
   def destroy_bs_weapon_2
-    if bs_weapon_2.range != 0
-      bs_weapon_2.range = 0
+    if @gunner_2.bs_weapon.range != 0
+        @gunner_2.bs_weapon.range = 0
     else
       destroy_random_weapon
     end
   end
 
   def destroy_bs_weapon_3
-    if bs_weapon_3.range != 0
-      bs_weapon_3.range = 0
+    if @gunner_3.bs_weapon.range != 0
+        @gunner_3.bs_weapon.range = 0
     else
       destroy_random_weapon
     end

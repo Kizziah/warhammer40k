@@ -8,9 +8,9 @@ describe Troop do
       @havoc = Havoc.create
       @ork =  Loota.create
       @marine = Marine.create
-      @cultist = Cultist.new
+      @cultist = Cultist.create
       @board = Board.new(30, 30)
-      @board.place_troop(@thousandson, 11, 10)
+      @board.place_troop(@thousandson, 22, 14)
       @board.place_troop(@marine, 3, 2)
       @board.place_troop(@havoc, 10, 10)
       @board.place_troop(@cultist, 2, 2)
@@ -18,7 +18,7 @@ describe Troop do
     end
 
     it "should auto kill the marine when a 6 hit, 6 strength, and 3 AP" do
-      shot = @thousandson.shoot(@marine, hit: 6, strength: 6, armor: 1)
+      @thousandson.shoot(@marine, hit: 6, strength: 6, armor: 1)
       @marine.dead?.should == true
     end
 
@@ -74,7 +74,7 @@ describe Troop do
       @thousandson = ThousandSon.create
       @orc = Loota.create
       @havoc = Havoc.create
-      @cultist = Cultist.new
+      @cultist = Cultist.create
     end
 
     it "should thousandson attack first, kills orc, and not get attacked" do
@@ -97,17 +97,17 @@ describe Troop do
       @orc.a.should == 0
     end
 
-    # it "cultist assaults havoc, havoc attacks first misses then killed by cultist" do
-    #   @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, { hit: 1 })
-    #   @cultist.dead?.should == false
-    #   @havoc.dead?.should == true
-    # end
+    it "cultist assaults havoc, havoc attacks first misses then killed by cultist" do
+      @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, { hit: 1})
+      @cultist.dead?.should == false
+      @havoc.dead?.should == true
+    end
 
-    # it "cultist assaults havoc, havoc attacks first kills cultist" do
-    #   @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, {hit: 6, hit: 6, strength: 6, armor: 1})
-    #   @cultist.dead?.should == true
-    #   @havoc.dead?.should == false
-    # end
+    it "cultist assaults havoc, havoc attacks first kills cultist" do
+      @cultist.assault(@havoc, { hit: 6, strength: 6, armor: 1}, {hit: 6, hit: 6, strength: 6, armor: 1})
+      @cultist.dead?.should == true
+      @havoc.dead?.should == false
+    end
 
     it "havoc attacks thousandson both are killed" do
       @havoc.assault(@thousandson, {hit: 6, strength: 6, armor: 1, autosave: 0}, {hit: 6, strength: 6, armor: 1, autosave: 0})
@@ -146,7 +146,7 @@ describe Troop do
   describe 'move' do
     before(:each) do
       @marine = Marine.create
-      @cultist = Cultist.new
+      @cultist = Cultist.create
     end
 
     it "should move the distance ordered" do
