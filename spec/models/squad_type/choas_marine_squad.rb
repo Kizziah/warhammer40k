@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ChoasMarineSquad do
 
-  describe 'squad details, info, and rules according to Codex' do
+
     before(:each) do
       @squad = ChoasMarineSquad.new
     end
@@ -29,29 +29,29 @@ describe ChoasMarineSquad do
       @squad.points == 85
     end
 
-    it "should only allow 1 gunny if squad length is less then 10" do
+    it "should only allow 1 havocs if squad length is less then 10" do
       @squad.add_troop(3)
       @squad.flatten.length.should == 8
       @squad.add_weapon(Weapon.send(:meltagun))
       @squad.add_weapon(Weapon.send(:meltagun))
-      @squad.gunny.length.should == 1
+      @squad.gunnys.length.should == 1
       @squad.points.should == 124
     end
 
     it "should not be allowed to add a lascannon to a basic squad" do
       @squad.add_weapon(Weapon.send(:lascannon))
       @squad.points.should == 75
-      @squad.gunny.length.should == 0
+      @squad.havocs.length.should == 0
     end
 
     it "should allowed to add a lascannon to a 12 man squad" do
       @squad.add_troop(7)
       @squad.add_weapon(Weapon.send(:lascannon))
       @squad.points.should == 186
-      @squad.gunny.length.should == 1
+      @squad.havocs.length.should == 1
     end
 
-    it "should allow 2 gunnys if squad length is 10 or larger, one with a lascannon" do
+    it "should allow 2 havocss if squad length is 10 or larger, one with a lascannon" do
       @squad.add_troop(7)
       @squad.add_weapon(Weapon.send(:meltagun))
       @squad.add_weapon(Weapon.send(:lascannon))
@@ -63,7 +63,7 @@ describe ChoasMarineSquad do
       @squad.add_weapon(Weapon.send(:lascannon))
       @squad.add_weapon(Weapon.send(:lascannon))
       @squad.points.should == 186
-      @squad.gunny.length.should == 1
+      @squad.havocs.length.should == 1
       @squad.flatten.length.should == 12
     end
 
@@ -73,9 +73,9 @@ describe ChoasMarineSquad do
       @squad.add_weapon(Weapon.send(:lascannon))
       @squad.add_weapon(Weapon.send(:meltagun))
       @squad.points.should == 196
-      @squad.gunny.length.should == 2
+      @squad.havocs.length.should == 1
+      @squad.gunnys.length.should == 1
       @squad.flatten.length.should == 12
     end
-  end
 
 end

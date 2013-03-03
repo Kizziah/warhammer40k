@@ -20,8 +20,8 @@ class Troop
     @type = stats [:type] || 'troop'
   end
 
-  def shoot(target, shoot_rolls = {}, all_units = {})
-   ShootHelper.new(self, target, shoot_rolls, all_units)
+  def shoot(target, shoot_rolls = {})
+   self.bs_weapon.use(self, target, shoot_rolls)
   end
 
   def assault(target, attack_rolls = {}, defend_rolls = {})

@@ -8,8 +8,8 @@ class GetsHot
   end
 
   def attack_self
-    generic = Cultist.new
-    Shoot.new(generic, shooter, roll: 6, strength: 6 )
+    generic = Cultist.create
+    Shot.new(generic, shooter, roll: 6, strength: 6 )
   end
 
 end

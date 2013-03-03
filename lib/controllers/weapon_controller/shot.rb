@@ -1,10 +1,13 @@
-class Shoot
+class Shot
+ # raise "UNVALID" unless shot_invalid?
+ # WOUND = shooter_rolls = {hit_roll:}
   $results = []
 
   attr_reader :result, :hit_roll, :strength_roll, :armor_roll, :autosave_roll, :bs,
-              :target, :weapon, :shooter
+              :target, :weapon, :shooter, :rolls
 
   def initialize(shooter, target, shooter_rolls = {})
+    @rolls = shooter_rolls
     @hit_roll = shooter_rolls[:hit] || Dice.roll
     @strength_roll = shooter_rolls[:strength] || Dice.roll
     @armor_roll = shooter_rolls[:armor] || Dice.roll
@@ -31,10 +34,17 @@ class Shoot
 
   def hit_test
     if hit_target?
-      strength_test
+      ShootVehicle.new(shooter, target, rolls) if target.type == 'vehicle'
+      strength_test if target.type == 'troop'
     else
       miss
     end
+  end
+
+
+  def reroll_hit
+
+    Shot.new(shooter, target)
   end
 
   def strength_test
@@ -96,7 +106,10 @@ class Shoot
     @result = "miss"
     $results << @result
     GetsHot.new(shooter) if hit_roll == 1 && @weapon.special == 'getshot'
+    # reroll_hit if @weapon.special == 'twinlinked' && @twinlinked == nil #TODO fix twinlinked so it allows misses
+
   end
+
 
   def wound
     target.wound
@@ -114,6 +127,7 @@ class Shoot
     when 4 then 3
     when 3 then 4
     when 2 then 5
+    when 1 then 6
     end
     hit_roll >= roll_needed
   end

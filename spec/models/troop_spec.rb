@@ -5,16 +5,11 @@ describe Troop do
   describe 'shoot' do
     before(:each) do
       @thousandson = ThousandSon.create
-      @havoc = Havoc.create
+      @havoc = Marine.create
+      @havoc.bs_weapon = Weapon.send(:lascannon)
       @ork =  Loota.create
       @marine = Marine.create
       @cultist = Cultist.create
-      @board = Board.new(30, 30)
-      @board.place_troop(@thousandson, 22, 14)
-      @board.place_troop(@marine, 3, 2)
-      @board.place_troop(@havoc, 10, 10)
-      @board.place_troop(@cultist, 2, 2)
-      @board.place_troop(@ork, 3, 7)
     end
 
     it "should auto kill the marine when a 6 hit, 6 strength, and 3 AP" do
@@ -73,7 +68,7 @@ describe Troop do
     before(:each) do
       @thousandson = ThousandSon.create
       @orc = Loota.create
-      @havoc = Havoc.create
+      @havoc = Marine.create
       @cultist = Cultist.create
     end
 

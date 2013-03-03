@@ -10,7 +10,7 @@ class Rhino < Vehicle
     @back_armour = 10
     @side_armour = 11
     @hp = 3
-    @bs_weapon_1 = @@boltgun
+    @bs_weapon_1 = Weapon.boltgun
     @transport_capacity = 10
   end
 

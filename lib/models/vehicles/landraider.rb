@@ -7,9 +7,9 @@ class LandRaider < Vehicle
       :back_armour => stats[:back_armour] || 14,
       :side_armour => stats[:side_armour] || 14,
       :hp => stats[:hp] || 4,
-      :bs_weapon_1 => stats[:bs_weapon_1] || @@heavybolter,
-      :bs_weapon_2 => stats[:bs_weapon_2] || @@lascannon,
-      :bs_weapon_3 => stats[:bs_weapon_3] || @@lascannon,
+      :bs_weapon_1 => stats[:bs_weapon_1] || Weapon.heavybolter,
+      :bs_weapon_2 => stats[:bs_weapon_2] || Weapon.twinlinkedlascannon,
+      :bs_weapon_3 => stats[:bs_weapon_3] || Weapon.twinlinkedlascannon,
       :transport_capacity => stats[:points] || 10
   )
   end
@@ -39,14 +39,14 @@ class LandRaider < Vehicle
   end
 
   def destroy_random_weapon
-    roll = Dice.roll
-    if roll == 1 || roll == 2
-        destroy_bs_weapon_1
-      elsif roll == 3 || roll == 4
-        destroy_bs_weapon_2
-      elsif roll == 5 || roll == 6
-       destroy_bs_weapon_3
-    end
+    # roll = 1 + rand(6)
+    # if roll == 1 || roll == 2
+    #     destroy_bs_weapon_1
+    #   elsif roll == 3 || roll == 4
+    #     destroy_bs_weapon_2
+    #   elsif roll == 5 || roll == 6
+    #    destroy_bs_weapon_3
+    # end
   end
 
   def destroy_bs_weapon_1

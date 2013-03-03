@@ -1,7 +1,6 @@
-class ThousandSonSquad < Array
+class ThousandSonSquad < DefaultSquad
 
- attr_accessor  :coordinates, :tile, :targetable, :combat, :moved, :option,
-                :fired, :assaulted, :troops, :num, :leader, :points, :broken
+ attr_accessor :troops, :leader, :points
 
   attr_reader :faction, :name
 
@@ -13,6 +12,8 @@ class ThousandSonSquad < Array
     self << @leader
     @points = 150
   end
+
+
 
   def add_troop(num = {})
     num = 1 if num == {}

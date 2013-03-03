@@ -11,8 +11,8 @@ class Loota < Troop
       :i => stat[:i]   || 3,
       :save => stat[:save] || 6,
       :autosave => stat[:autosave] || 0,
-      :bs_weapon => stat[:bs_weapon] || @@delfgun,
-      :ws_weapon => stat[:ws_weapon] || Weapon.new(0, 3, 7, 3, "knive"),
+      :bs_weapon => stat[:bs_weapon] || Weapon.delfgun,
+      :ws_weapon => stat[:ws_weapon] || Weapon.knive,
       :points => stat[:points] || 15
     )
   end

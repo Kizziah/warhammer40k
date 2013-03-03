@@ -12,7 +12,7 @@ class Marine < Troop
       :ld => stats[:ld] || 8,
       :save => stats[:save] || 3,
       :autosave => stats[:autosave] || 0,
-      :bs_weapon => stats[:bs_weapon] || @@boltgun,
+      :bs_weapon => stats[:bs_weapon] || Weapon.boltgun,
       :ws_weapon => stats[:ws_weapon] || Weapon.new(0, 4, 7, 1, "knive"),
       :points => stats[:points] || 15
     )
@@ -25,7 +25,7 @@ end
 
 class MarineSergeant
   def self.create
-    Marine.create(:ld => 9, :a => 2, :bs_weapon => @@boltpistol, :ws_weapon => @@chainsword)
+    Marine.create(:ld => 9, :a => 2, :bs_weapon => Weapon.boltpistol, :ws_weapon => Weapon.chainsword)
   end
 end
 
@@ -37,7 +37,7 @@ end
 
 class KhorneBerzerker
   def self.create
-    Marine.create(:points => 19, :ws => 5, :bs_weapon => @@boltpistol, :ws_weapon => @@chainsword)
+    Marine.create(:points => 19, :ws => 5, :bs_weapon => Weapon.boltpistol, :ws_weapon => Weapon.chainsword)
   end
 end
 
@@ -49,12 +49,12 @@ end
 
 class ThousandSon < Marine
   def self.create
-    Marine.create(:bs_weapon => @@infernoboltgun, :autosave => 4, :ld => 10, :points => 23)
+    Marine.create(:bs_weapon => Weapon.infernoboltgun, :autosave => 4, :ld => 10, :points => 23)
   end
 end
 
 class ThousandSonSocerer
   def self.create
-    Marine.create(:a => 2, :bs_weapon => @@infernoboltgun, :ws_weapon => @@powersword, :autosave => 4, :ld => 10)
+    Marine.create(:a => 2, :bs_weapon => Weapon.infernoboltgun, :ws_weapon => Weapon.powersword, :autosave => 4, :ld => 10)
   end
 end

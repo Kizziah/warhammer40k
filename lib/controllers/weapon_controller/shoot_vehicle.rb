@@ -1,9 +1,9 @@
 class ShootVehicle
-
+  $results = []
   attr_reader :result, :hit_roll, :chart_roll, :penetration_roll, :area_roll, :bs,
               :target, :weapon, :shooter, :all_units
 
-  def initialize(shooter, target, shooter_rolls = {}, all_units = {} )
+  def initialize(shooter, target, shooter_rolls = {})
     @hit_roll = shooter_rolls[:hit] || Dice.roll
     @penetration_roll = shooter_rolls[:strength] || Dice.roll
     @chart_roll = shooter_rolls[:chart] || Dice.roll
@@ -13,20 +13,20 @@ class ShootVehicle
     @weapon = shooter.bs_weapon
     @bs = @shooter.bs
     @all_units = all_units
-    hit_test
-  end
-
-  def hit_test
-    if hit_target?
-      vehicle_armor_test
-    else
-      miss
-    end
+    vehicle_armor_test
   end
 
   def vehicle_armor_test
    vehicle_damage_chart if target.front_armour < penetration_test
-   target.hp -= 1 if target.front_armour == penetration_test
+    if target.front_armour == penetration_test
+      target.hp -= 1
+      @result = 'glance'
+      $results << @result
+    end
+    if target.front_armour > penetration_test
+      @result = 'no damage'
+      $results << @result
+    end
   end
 
   def ap_bonus
@@ -37,7 +37,7 @@ class ShootVehicle
   def vehicle_damage_chart
     ap_bonus if weapon.ap <= 2
     target.hp -= 1
-    chart_result = case chart_roll
+    chart_result = case @chart_roll
     when 1 then crew_shaken
     when 2 then crew_shaken
     when 3 then crew_stunned
@@ -61,24 +61,32 @@ class ShootVehicle
 
   def weapon_destroyed
     target.destroy_random_weapon
+    @result = 'weapon destroyed'
+    $results << @result
   end
 
   def crew_stunned
     target.crew = 'stunned'
+    @result = 'stunned'
+    $results << @result
   end
 
   def explode
     target.hp = 0
-    area = Dice.roll
-    VehicleExplosion.new(area_roll, target, @all_units)
+    @result = 'explode'
+    $results << @result
+    # VehicleExplosion.new(area_roll, target, @all_units)
   end
 
   def miss
     @result = 'miss'
+    $results << @result
   end
 
   def immombilised
     target.mobility = false
+    @result = 'immombilised'
+    $results << @result
   end
 
   def crew_shaken

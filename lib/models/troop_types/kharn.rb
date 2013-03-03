@@ -12,7 +12,7 @@ class Kharn < Troop
       :ld => stats[:ld] || 10,
       :save => stats[:save] || 3,
       :autosave => stats[:autosave] || 5,
-      :bs_weapon => stats[:bs_weapon] || @@plasmapistol,
+      :bs_weapon => stats[:bs_weapon] || Weapon.plasmapistol,
       :ws_weapon => stats[:ws_weapon] || Weapon.new(0, 4, 7, 1, "knive"),
       :points => stats[:points] || 160
     )

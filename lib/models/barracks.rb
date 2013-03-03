@@ -1,5 +1,5 @@
 #Choas Squads
-@@choas_marine = ChoasMarineSquad.new
+# @@choas_marine = ChoasMarineSquad.new
 @@havoc = HavocSquad.new
 @@thousandson = ThousandSonSquad.new
 #Choas Characters
