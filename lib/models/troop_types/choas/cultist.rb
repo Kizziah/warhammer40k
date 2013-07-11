@@ -12,9 +12,9 @@ class Cultist < Troop
     :ld => stats[:ld] || 7,
     :save => stats[:save] || 6,
     :autosave => stats[:autosave] || 0,
-    :bs_weapon => stats[:bs_weapon] || Weapon.new(16, 3, 7, 1, "autopistol"),
-    :ws_weapon => stats[:ws_weapon] || Weapon.new(0, 3, 7, 1, "knive"),
-    :points => stats[:points] || 5
+    :bs_weapon => stats[:bs_weapon] || Weapon.autopistol,
+    :ws_weapon => stats[:ws_weapon] || Weapon.chainsword,
+    :points => stats[:points] || 4
   )
   end
 

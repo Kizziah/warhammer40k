@@ -13,7 +13,7 @@ class VehicleExplosion
   def units_in_blast_area
     starting_point = target
     @all_units.each do |troop|
-      if distance_tile(starting_point.tile, troop.tile) <= area.to_i && troop.type == 'troop'
+      if distance_tile(starting_point.tile, troop.tile) <= area.to_i && troop.type == :troop
         damage(troop)
       end
     end
@@ -24,4 +24,5 @@ class VehicleExplosion
     generic.bs_weapon = blast
     Shoot.new(generic, troop, hit:6)
   end
+
 end

@@ -5,7 +5,7 @@ class Vehicle
                 :coordinates, :tile
 
   def initialize(stats = {})
-    @type = 'vehicle'
+    @type = :vehicle
     @crew = stats[:crew]
     @bs = stats[:bs]
     @front_armour = stats[:front_armour]
@@ -29,7 +29,7 @@ class Vehicle
   end
 
   def crew_stunned?
-    self.crew == 'stunned'
+    self.crew == :stunned
   end
 
   def immobilised?

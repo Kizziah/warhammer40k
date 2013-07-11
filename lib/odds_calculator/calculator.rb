@@ -21,12 +21,12 @@ weapon = 0
 mobile = 0
 stunned = 0
 havoc.bs_weapon = Weapon.lascannon
-10.times do
+100.times do
 
-havoc.shoot(marine)
+havoc.shoot(rhino)
 end
 
-$results.each {|wound| kills += 1 if wound == "WOUND"  }
+$results.each {|wound| kills += 1 if wound == :WOUND  }
 $results.each {|wound| miss += 1 if wound == "miss"  }
 $results.each {|wound| svt += 1 if wound == "SvsT"  }
 $results.each {|wound| armor += 1 if wound == "ARMOR"  }
@@ -38,15 +38,16 @@ $results.each {|wound| weapon += 1 if wound == "weapon destroyed"  }
 $results.each {|wound| mobile += 1 if wound == "immombilised"  }
 $results.each {|wound| stunned += 1 if wound == "stunned"  }
 
-puts kills
-puts miss
-puts svt
-puts armor
-puts autosave
+# puts $results
+# puts kills
+puts miss.to_s
+# puts svt
+# puts armor
+# puts autosave
 
-# puts glance.to_s + " glancing"
-# puts no_damage.to_s + " no damage"
-# puts explode.to_s + ' explode'
-# puts weapon.to_s + ' weapon destroyed'
-# puts mobile.to_s + 'mobile'
-# puts stunned
+puts glance.to_s + " glancing"
+puts no_damage.to_s + " no damage"
+puts explode.to_s + ' explode'
+puts weapon.to_s + ' weapon destroyed'
+puts mobile.to_s + 'mobile'
+puts stunned

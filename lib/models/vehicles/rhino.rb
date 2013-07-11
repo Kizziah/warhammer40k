@@ -3,10 +3,10 @@ class Rhino < Vehicle
   attr_accessor :tile, :coordinates, :mobility
 
   def initialize(stats = {})
-    @type = 'vehicle'
+    @type = :vehicle
     @crew = 4
     @bs = 4
-    @front_armour = 11
+    @front_armour = 12
     @back_armour = 10
     @side_armour = 11
     @hp = 3

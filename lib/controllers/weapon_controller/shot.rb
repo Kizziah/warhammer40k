@@ -34,8 +34,8 @@ class Shot
 
   def hit_test
     if hit_target?
-      ShootVehicle.new(shooter, target, rolls) if target.type == 'vehicle'
-      strength_test if target.type == 'troop'
+      ShootVehicle.new(shooter, target, rolls) if target.type == :vehicle #|| target.type :walker
+      strength_test if target.type == :troop
     else
       miss
     end
@@ -51,7 +51,7 @@ class Shot
     if strength_sufficient?
       ap_test
     else
-      @result = "SvsT"
+      @result = :SvsT
       $results << @result
     end
   end
@@ -66,7 +66,7 @@ class Shot
 
   def armor_test
     if armor_roll >= target.save
-      @result = "ARMOR"
+      @result = :ARMOR
       $results << @result
     else
       have_autosave
@@ -83,7 +83,7 @@ class Shot
 
   def autosave_test
     if autosave_roll >= target.autosave
-      @result = "AUTOSAVE"
+      @result = :AUTOSAVE
       $results << @result
     else
       wound
@@ -103,7 +103,7 @@ class Shot
   end
 
   def miss
-    @result = "miss"
+    @result = :miss
     $results << @result
     GetsHot.new(shooter) if hit_roll == 1 && @weapon.special == 'getshot'
     # reroll_hit if @weapon.special == 'twinlinked' && @twinlinked == nil #TODO fix twinlinked so it allows misses
@@ -113,7 +113,7 @@ class Shot
 
   def wound
     target.wound
-    @result = "WOUND"
+    @result = :WOUND
     $results << @result
   end
 

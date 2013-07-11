@@ -10,8 +10,8 @@ class ChoasMarineSquad < DefaultSquad
     @havocs = []
     @troops = []
     @gunnys = []
-    @name = 'ChoasMarine'
-    @faction = 'Choas'
+    @name = :ChoasMarine
+    @faction = :Choas
     4.times { @troops << ChoasMarine.create }
     @leader = MarineSergeant.create
     self << @troops
@@ -20,8 +20,6 @@ class ChoasMarineSquad < DefaultSquad
     self << @gunnys
     @points = 75
   end
-
-
 
   def add_troop(number = 1)
     number = 15 if number >= 16

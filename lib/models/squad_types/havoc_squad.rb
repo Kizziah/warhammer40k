@@ -7,12 +7,12 @@ class HavocSquad < DefaultSquad
   def initialize
     @havocs = []
     @troops = []
-    @name = 'Havoc'
-    @faction = 'Choas'
-    4.times { @troops << ChoasMarine.create }
+    @name = :Havoc
+    @faction = :Choas
+    4.times { @troops << Havoc.create }
     @champion = MarineSergeant.create
     self << @troops
-    self << @leader
+    self << @champion
     self << @havocs
     @points = 75
   end

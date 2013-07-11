@@ -1,4 +1,4 @@
-class ChoasMarine < Troop
+class NoiseMarine < Troop
 
   def self.create(stats = {})
     new(
@@ -8,13 +8,14 @@ class ChoasMarine < Troop
       :t => stats[:t]   || 4,
       :w => stats[:w]   || 1,
       :a => stats[:a]   || 1,
-      :i => stats[:i]   || 4,
+      :i => stats[:i]   || 5,
       :ld => stats[:ld] || 8,
       :save => stats[:save] || 3,
       :autosave => stats[:autosave] || 0,
-      :bs_weapon => stats[:bs_weapon] || Weapon.boltgun,
+      :bs_weapon => stats[:bs_weapon] || Weapon.boltpistol,
       :ws_weapon => stats[:ws_weapon] || Weapon.knive,
       :points => stats[:points] || 13
     )
   end
 
+end

@@ -3,6 +3,7 @@ class Combat
   attr_accessor :defender, :attacker, :attack_rolls, :result, :defend_rolls
 
   def initialize(attacker, defender, attack_rolls, defend_rolls)
+    @turn = turn
     @attacker = attacker
     @defender = defender
     @attack_rolls = attack_rolls
@@ -11,8 +12,8 @@ class Combat
   end
 
   def initiative_test
-    attacker.combat = "combat"
-    defender.combat = "combat"
+    attacker.combat = true
+    defender.combat = true
 
     if attacker.i > defender.i
       Assault.new(attacker, defender, attack_rolls)
@@ -28,7 +29,8 @@ class Combat
       Assault.new(attacker, defender, attack_rolls)
       Assault.new(defender, attacker, defend_rolls)
     end
-    attacker.combat = "" if defender.dead? == true
-    defender.combat = "" if attacker.dead? == true
+    attacker.combat = nil if defender.dead? == true
+    defender.combat = nil if attacker.dead? == true
   end
+
 end

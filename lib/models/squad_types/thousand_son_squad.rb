@@ -5,15 +5,13 @@ class ThousandSonSquad < DefaultSquad
   attr_reader :faction, :name
 
   def initialize
-    @name = 'Thousand Son'
-    @faction = 'Choas'
+    @name = :ThousandSon
+    @faction = :Choas
     4.times { self << ThousandSon.create }
     @leader = ThousandSonSocerer.create
     self << @leader
     @points = 150
   end
-
-
 
   def add_troop(num = {})
     num = 1 if num == {}

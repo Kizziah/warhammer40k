@@ -17,11 +17,14 @@ class DefaultSquad < Array
   def shoot(targets)
     self.flatten!
     targets.flatten!
-    # targets = targets.flatten
     self.each do |troop| troop.bs_weapon.use(troop, targets.last)
     targets.kill_troops
     end
-    #TODO DEBUG
+
+  end
+
+  def attack
+
   end
 
   def kill_troops
@@ -32,9 +35,6 @@ class DefaultSquad < Array
     self.flatten.length
   end
 
-  def make_squad_single_array
-    self.flatten!
-  end
 
   def break_test(roll = {})
     roll = roll[:roll] || Dice.roll_2dice

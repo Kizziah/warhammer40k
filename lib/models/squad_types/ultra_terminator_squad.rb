@@ -8,8 +8,8 @@ class UltraTerminatorSquad < Array
   def initialize
     @gunny = []
     @troops = []
-    @name = 'ChoasMarine'
-    @faction = 'Choas'
+    @name = :ChoasMarine
+    @faction = :Choas
     4.times { @troops << Terminator.create }
     @leader = Terminator.create
     self << @troops
@@ -57,7 +57,7 @@ class UltraTerminatorSquad < Array
   end
 
   def weapon_allowed?(weapon)
-    weapon.type == 'assault_cannon' || weapon.type == 'krakmissle' || weapon.type == 'heavyflamer'
+    [:assault_cannon, :krakmissle, :heavyflamer].include?(weapon.type.to_sym)
   end
 
   def convert_troop_to_gunny(weapon)
@@ -67,22 +67,16 @@ class UltraTerminatorSquad < Array
   end
 
   def add_weapon_points(weapon)
-    if weapon.type == 'assault_cannon'
-      self.points += 30
-    elsif weapon.type == 'krakmissle'
-      self.points += 30
-    elsif weapon.type == 'heavyflamer'
-      self.points += 5
+    self.points += case weapon.type.to_sym
+    when :assault_cannon, :krakmissle then 30
+    when :heavyflamer then 5
     end
   end
 
   def subtract_weapon_points(weapon)
-    if weapon.type == 'assault_cannon'
-      self.points -= 30
-    elsif weapon.type == 'krakmissle'
-      self.points -= 30
-    elsif weapon.type == 'heavyflamer'
-      self.points -= 5
+    self.points -= case weapon.type.to_sym
+    when :assault_cannon, :krakmissle then 30
+    when :heavyflamer then 5
     end
   end
 
