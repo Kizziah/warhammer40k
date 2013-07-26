@@ -41,9 +41,7 @@ class Shot
     end
   end
 
-
   def reroll_hit
-
     Shot.new(shooter, target)
   end
 
@@ -107,10 +105,8 @@ class Shot
     $results << @result
     GetsHot.new(shooter) if hit_roll == 1 && @weapon.special == 'getshot'
     # reroll_hit if @weapon.special == 'twinlinked' && @twinlinked == nil #TODO fix twinlinked so it allows misses
-
   end
-
-
+  
   def wound
     target.wound
     @result = :WOUND
